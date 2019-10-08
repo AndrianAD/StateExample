@@ -23,14 +23,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var washMashine = WashMashine(this)
 
 
-        washMashine.state.observe(this, Observer {
+        var washMachine = WashMachine()
+        washMachine.state.observe(this, Observer {
             when (it) {
                 is WaitingCashState -> {
                     next.text = "Next"
-                    editText.visibility = View.VISIBLE
+                    editText.apply {
+                        visibility=View.VISIBLE
+                        text.clear()
+                    }
                     state.text = "WaitingCashState"
                     lottiAnimation.apply {
                         setAnimation("spend.json")
@@ -42,9 +45,11 @@ class MainActivity : AppCompatActivity() {
                 is ReadyState -> {
                     editText.visibility = View.GONE
                     state.text = "ReadyState"
+                    info.text= "You have paid for ${editText.text} minutes"
                     lottiAnimation.setAnimation("washing.json")
                 }
                 is WorkingState -> {
+                    info.text="Waiting please..."
                     next.text = "Stop"
                     state.text = "WorkingState"
                     lottiAnimation.apply {
@@ -64,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                             .show()
                     alertView.setOnClickListener { alertDialog.dismiss() }
                     alertDialog.setOnDismissListener {
-                        washMashine.state.value=washMashine.waitingCashState
+                        washMachine.state.value=washMachine.waitingCashState
                     }
 
                 }
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         next.setOnClickListener {
             if (editText.text.isNullOrEmpty().not())
-                washMashine.start(editText.text.toString())
+                washMachine.start(editText.text.toString())
         }
 
     }

@@ -1,11 +1,11 @@
 package com.android.stateexample.states
 
 import com.android.stateexample.State
-import com.android.stateexample.WashMashine
+import com.android.stateexample.WashMachine
 
 
 
-class FinishState(var washMashine: WashMashine) :
+class FinishState(var washMachine: WashMachine) :
     State {
 
     override fun init(cash: String) {

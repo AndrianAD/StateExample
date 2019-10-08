@@ -1,9 +1,9 @@
 package com.android.stateexample.states
 
 import com.android.stateexample.State
-import com.android.stateexample.WashMashine
+import com.android.stateexample.WashMachine
 
-class ReadyState(var washMashine: WashMashine) : State {
+class ReadyState(var washMachine: WashMachine) : State {
 
 
     override fun init(cash:String) {
@@ -11,8 +11,8 @@ class ReadyState(var washMashine: WashMashine) : State {
     }
 
     override fun action(cash:String) {
-        washMashine.state.value = washMashine.workingState
-        (washMashine.state.value as WorkingState).init(cash)
+        washMachine.state.value = washMachine.workingState
+        (washMachine.state.value as WorkingState).init(cash)
 
     }
 

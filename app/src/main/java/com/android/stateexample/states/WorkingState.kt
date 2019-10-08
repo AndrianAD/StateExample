@@ -1,23 +1,23 @@
 package com.android.stateexample.states
 
 import com.android.stateexample.State
-import com.android.stateexample.WashMashine
+import com.android.stateexample.WashMachine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class WorkingState(var washMashine: WashMashine) : State {
 
+class WorkingState(var washMachine: WashMachine) : State {
 
-    override fun init(cash:String) {
+    override fun init(cash: String) {
         CoroutineScope(Dispatchers.Default).launch {
-            delay(cash.toLong()*1000)
-            washMashine.state.postValue(washMashine.finishState)
+            delay(cash.toLong() * 1000)
+            washMachine.state.postValue(washMachine.finishState)
         }
     }
 
-    override fun action(cash:String) {
-        washMashine.state.value = washMashine.waitingCashState
+    override fun action(cash: String) {
+        washMachine.state.value = washMachine.waitingCashState
     }
 }
