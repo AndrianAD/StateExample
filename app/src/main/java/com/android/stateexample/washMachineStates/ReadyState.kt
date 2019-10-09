@@ -1,4 +1,4 @@
-package com.android.stateexample.states
+package com.android.stateexample.washMachineStates
 
 import com.android.stateexample.State
 import com.android.stateexample.WashMachine

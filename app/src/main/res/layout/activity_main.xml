@@ -64,7 +64,8 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/lottiAnimation"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/lottiAnimation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="some info" />
