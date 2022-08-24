@@ -26,38 +26,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        var toaster = Toaster(this)
-        toaster.state.value = Off(toaster)
-        var washMachine = WashMachineAdapter(toaster)
-
-
-
-        //  var washMachine = WashMachine()
+//
+//        var toaster = Toaster()
+//        toaster.state.value = Off(toaster)
+//        var washMachine = WashMachineAdapter(toaster)
 
 
-        toaster.state.observe(this, Observer {
-            when (it) {
-                is On -> {
-                    info.text = "Waiting please..."
-                    state.text = "Toaster ON"
-                    next.text = "Stop"
-                    lottiAnimation.apply {
-                        setAnimation("toaster.json")
-                        playAnimation()
-                        loop(true)
-                    }
 
-                }
-                is Off -> {
-                    info.text = "Welcome!"
-                    lottiAnimation.setAnimation("toaster.json")
-                    state.text = "Toaster OFF"
-                    lottiAnimation.cancelAnimation()
-                    next.text = "On"
-                }
-            }
-        })
+          var washMachine = WashMachine()
+
+
+//        toaster.state.observe(this, Observer {
+//            when (it) {
+//                is On -> {
+//                    info.text = "Waiting please..."
+//                    state.text = "Toaster ON"
+//                    next.text = "Stop"
+//                    lottiAnimation.apply {
+//                        setAnimation("toaster.json")
+//                        playAnimation()
+//                        loop(true)
+//                    }
+//
+//                }
+//                is Off -> {
+//                    info.text = "Welcome!"
+//                    lottiAnimation.setAnimation("toaster.json")
+//                    state.text = "Toaster OFF"
+//                    lottiAnimation.cancelAnimation()
+//                    next.text = "On"
+//                }
+//            }
+//        })
 
 
         washMachine.state.observe(this, Observer {

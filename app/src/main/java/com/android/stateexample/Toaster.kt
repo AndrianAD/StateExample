@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.android.stateexample.ToasterState.Off
 import com.android.stateexample.ToasterState.On
 
-class Toaster(var context: Context) {
+class Toaster() {
     var state: MutableLiveData<State> = MutableLiveData()
     var on = On(this)
     var off = Off(this)
