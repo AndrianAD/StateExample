@@ -7,9 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.android.stateexample.ToasterState.Off
-import com.android.stateexample.ToasterState.On
-import com.android.stateexample.adapter.WashMachineAdapter
 import com.android.stateexample.washMachineStates.FinishState
 import com.android.stateexample.washMachineStates.ReadyState
 import com.android.stateexample.washMachineStates.WaitingCashState
@@ -26,38 +23,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        var toaster = Toaster(this)
-        toaster.state.value = Off(toaster)
-        var washMachine = WashMachineAdapter(toaster)
-
-
-
-        //  var washMachine = WashMachine()
+//
+//        var toaster = Toaster()
+//        toaster.state.value = Off(toaster)
+//        var washMachine = WashMachineAdapter(toaster)
 
 
-        toaster.state.observe(this, Observer {
-            when (it) {
-                is On -> {
-                    info.text = "Waiting please..."
-                    state.text = "Toaster ON"
-                    next.text = "Stop"
-                    lottiAnimation.apply {
-                        setAnimation("toaster.json")
-                        playAnimation()
-                        loop(true)
-                    }
 
-                }
-                is Off -> {
-                    info.text = "Welcome!"
-                    lottiAnimation.setAnimation("toaster.json")
-                    state.text = "Toaster OFF"
-                    lottiAnimation.cancelAnimation()
-                    next.text = "On"
-                }
-            }
-        })
+          var washMachine = WashMachine()
+
+
+//        toaster.state.observe(this, Observer {
+//            when (it) {
+//                is On -> {
+//                    info.text = "Waiting please..."
+//                    state.text = "Toaster ON"
+//                    next.text = "Stop"
+//                    lottiAnimation.apply {
+//                        setAnimation("toaster.json")
+//                        playAnimation()
+//                        loop(true)
+//                    }
+//
+//                }
+//                is Off -> {
+//                    info.text = "Welcome!"
+//                    lottiAnimation.setAnimation("toaster.json")
+//                    state.text = "Toaster OFF"
+//                    lottiAnimation.cancelAnimation()
+//                    next.text = "On"
+//                }
+//            }
+//        })
 
 
         washMachine.state.observe(this, Observer {
@@ -113,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
         next.setOnClickListener {
             if (editText.text.isNullOrEmpty().not())
-                washMachine.start(editText.text.toString())
+                washMachine.action(editText.text.toString())
         }
 
     }

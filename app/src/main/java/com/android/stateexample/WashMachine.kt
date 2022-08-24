@@ -19,7 +19,7 @@ open class WashMachine {
         state.value = waitingCashState
     }
 
-   open fun start(cash: String) {
+   open fun action(cash: String) {
         state.value?.action(cash)
     }
 

@@ -16,7 +16,7 @@ open class WashMachineAdapter(var toaster: Toaster) : WashMachine() {
         state.value=toaster.state.value
     }
 
-    override fun start(cash: String) {
+    override fun action(cash: String) {
         toaster.toastBread(cash)
     }
 }
